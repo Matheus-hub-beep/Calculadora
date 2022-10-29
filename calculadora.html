@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        .fundo{
+            height: 100vh;
+            background: linear-gradient(45deg, black, crimson);
+            color: white;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .calculadora{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        #resultado{
+            width: 207px;
+            height: 30px;
+            padding: 5px;
+            text-align: right;
+            color: black;
+            font-size: 25px;
+            background: white;
+            margin: 3px;
+        }
+
+        .tecla{
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            border: none;
+            background-color: rgb(31, 31, 31);
+            color: #fff;
+            margin: 3px;
+        }
+
+        .tecla:hover{
+            background-color: black;
+        }
+
+        .botao-zero{
+            width: 106px;
+        }
+
+        .botao-igual{
+            height: 106px;
+        }
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <h1>Gustavo Neitzke</h1>
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+            <table>
+                <tr>
+                    <td><button class="tecla" onclick="apagaTudo()">C</button></td>
+                    <td><button class="tecla" onclick="apagaUmDeCadaVez()"><</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('/')">/</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('*')">X</button></td>
+                </tr>
+                <tr>
+                    <td><button class="tecla" onclick="inserirNumero('7')">7</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('8')">8</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('9')">9</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('-')">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="tecla" onclick="inserirNumero('4')">4</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('5')">5</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('6')">6</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('+')">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="tecla" onclick="inserirNumero('1')">1</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('2')">2</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('3')">3</button></td>
+                    <td rowspan="2"><button class="tecla botao-igual" onclick="calcula()">=</button></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button class="tecla botao-zero" onclick="inserirNumero('0')">0</button></td>
+                    <td><button class="tecla" onclick="inserirNumero('.')">.</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function inserirNumero(num){
+            resultado = document.querySelector('#resultado').innerHTML;
+            document.querySelector('#resultado').innerHTML = resultado + num;
+        }
+
+        function apagaTudo(){
+            document.querySelector('#resultado').innerHTML = "";
+        }
+
+        function apagaUmDeCadaVez(){
+            resultado = document.querySelector('#resultado').innerHTML;
+            document.querySelector('#resultado').innerHTML = resultado.substring(0, resultado.length -1)
+        }
+
+        function calcula(){
+            resultado = document.querySelector('#resultado').innerHTML;
+            if(resultado){
+                document.querySelector('#resultado').innerHTML = eval(resultado)
+            }else{
+                apagaTudo()
+            }
+        }
+    </script>
+</body>
+</html>
